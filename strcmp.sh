@@ -1,21 +1,22 @@
-#!/bin/bash
+#!/bin/sh
 
 A=$1
 B=$2
 d=*
-count=`echo $A|wc -m`
+c=0
 
-for cursor in `seq 1 $count`
+while [[ $c -le ${#A} ]]
 do
-    c1=`echo $A|cut -c$cursor`
-    c2=`echo $B|cut -c$cursor`
+    c1=${A:$c:1} 
+    c2=${B:$c:1}
 
-    if test "$c1" = "$c2"
+    if test "${c1}" = "${c2}"
     then
-        echo -n "$c1"
+        echo -n "${c1}"
     else
-        echo -n "$d"
+        echo -n "${d}"
     fi
+    (( c++ )) 
 done
 
 echo
